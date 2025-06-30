@@ -12,7 +12,7 @@ from PIL import Image
 
 from . import __version__
 from .repl import repl
-from .commands import sketch
+from .commands import sketch, build
 
 # ASCII logo using figlet-style text
 LOGO = """
@@ -28,6 +28,9 @@ app = typer.Typer(help="A powerful CLI tool for creative development workflows")
 
 # Register the sketch command
 app.add_typer(sketch.app, name="sketch")
+
+# Register the build command (Claude Code SDK integration)
+app.add_typer(build.app, name="build")
 
 # Global state for flags
 class GlobalState:

@@ -26,6 +26,8 @@ pillow = "^10.0.0"
 rich = "^13.0.0"
 httpx = "^0.25.0"
 python-dotenv = "^1.0.0"
+claude-code-sdk = "^0.0.13"
+anyio = "^4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.0.0"

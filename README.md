@@ -100,6 +100,146 @@ The REPL keeps running after each command, making it perfect for iterative workf
 
 ## 📖 Core Commands
 
+### Build Command (Claude Code SDK Integration)
+
+The build command integrates with [Claude Code SDK](https://github.com/anthropics/claude-code-sdk-python) to let you build projects using natural language commands. This gives you access to all of Claude's coding capabilities with tool usage.
+
+#### Setup
+
+You'll need to set up your Anthropic API key and install the Claude Code CLI:
+
+**Step 1: Install Claude Code CLI**
+```bash
+# Install Node.js if you haven't already
+# Then install Claude Code globally
+npm install -g @anthropic-ai/claude-code
+```
+
+**Step 2: Set your Anthropic API key**
+
+You have several convenient ways to set your API key:
+
+**Option 1: Global Configuration (Recommended)**
+```bash
+# Get your API key from https://console.anthropic.com/
+anvil build config --set-key YOUR_ANTHROPIC_API_KEY --global
+```
+This saves your key to `~/.anvil/.env` and works for all projects.
+
+**Option 2: Project-specific Configuration**
+```bash
+# Set for current project only
+anvil build config --set-key YOUR_ANTHROPIC_API_KEY
+```
+This creates a `.env` file in your current directory.
+
+**Option 3: Environment Variable**
+```bash
+export ANTHROPIC_API_KEY=YOUR_ANTHROPIC_API_KEY
+```
+
+**Check Your Configuration**
+```bash
+anvil build config --show
+```
+
+#### Usage
+
+**Build anything with natural language:**
+```bash
+# Create a new project
+anvil build create "a React todo app with TypeScript and Tailwind CSS"
+
+# Build specific components
+anvil build create "a Python web scraper that gets news from multiple sources"
+
+# Fix or improve existing code
+anvil build create "fix the bugs in my code and add error handling"
+
+# Add features to existing projects
+anvil build create "add user authentication to my Flask app"
+```
+
+**Interactive chat mode:**
+```bash
+# Start a conversation with Claude
+anvil build chat
+
+# Chat in a specific directory
+anvil build chat --dir ./my-project
+
+# Auto-approve file changes
+anvil build chat --auto-approve
+```
+
+**Advanced options:**
+```bash
+# Specify which tools Claude can use
+anvil build create "build a web scraper" --tools Read,Write,Bash
+
+# Set working directory
+anvil build create "create a new component" --dir ./src/components
+
+# Auto-approve file edits (use with caution)
+anvil build create "refactor this code" --auto-approve
+
+# Limit conversation turns
+anvil build create "build an API" --max-turns 5
+```
+
+#### Available Tools
+
+Claude Code SDK provides access to powerful tools:
+
+- **Read**: Read files and directories
+- **Write**: Create and modify files
+- **Bash**: Execute shell commands
+- **Edit**: Make precise edits to existing files
+- **Search**: Search through codebases
+- **And many more**: The SDK supports all Claude Code tools
+
+#### Features
+
+- **Natural Language Interface**: Just describe what you want to build
+- **Real-time Streaming**: See Claude's responses as they're generated
+- **Tool Integration**: Claude can read, write, and execute code
+- **Interactive Chat**: Have conversations to iteratively build projects
+- **Smart File Management**: Automatic file creation and directory structure
+- **Error Handling**: Comprehensive error messages and recovery
+- **Flexible Configuration**: Project-specific or global API key management
+
+#### Examples
+
+```bash
+# Web Development
+anvil build create "a modern landing page with hero section, features, and contact form"
+
+# Backend Development  
+anvil build create "a REST API in Python with FastAPI, including user auth and database"
+
+# Mobile Development
+anvil build create "a React Native todo app with local storage"
+
+# Data Science
+anvil build create "a Python script to analyze CSV data and create visualizations"
+
+# DevOps
+anvil build create "Docker configuration for a Node.js app with nginx reverse proxy"
+
+# Bug Fixes
+anvil build create "analyze my code for bugs and performance issues, then fix them"
+
+# Code Review
+anvil build create "review my Python code and suggest improvements following best practices"
+```
+
+The build command essentially gives you a coding assistant that can:
+- Understand your requirements in natural language
+- Read and analyze your existing code
+- Create new files and modify existing ones
+- Run commands and tests
+- Explain what it's doing step by step
+
 ### Sketch Command
 
 The sketch command uses [v0's API](https://vercel.com/docs/v0/api) to generate modern web applications from text prompts.
